@@ -4,12 +4,18 @@
 cr="\033[1;31m"
 cg="\033[1;32m"
 cb="\033[1;34m"
+  
+  printf "installed git"
+  sudo pacman -S git
+  cd
 
+  printf "installed yay"
 	git clone https://aur.archlinux.org/yay.git
 	cd yay
 	makepkg -si --noconfirm
 	cd
-
+  
+  printf "installed sddm"
   yay -Syy sddm
   sudo rm -rf /etc/systemd/system/display-manager.service
   sudo systemctl enable sddm
@@ -33,6 +39,12 @@ do
     sleep 1
   fi
 done
+
+printf "Cloning rice from https://github.com/Y4zidd/awesome-installer.git"
+cd
+git clone https://github.com/Y4zidd/awesome-installer.git
+cd
+cd awesome-installer
 
 printf "${cg}Proceeding further would replace all of the current configs, consider making a backup.\n"
 printf "${cr}"
