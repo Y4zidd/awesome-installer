@@ -42,9 +42,8 @@ done
 
 printf "Cloning rice from https://github.com/Y4zidd/awesome-installer.git"
 cd
-git clone https://github.com/Y4zidd/awesome-installer.git
-cd
-cd awesome-installer
+git clone https://github.com/Manas140/dotfiles.git
+cd dotfiles
 
 printf "${cg}Proceeding further would replace all of the current configs, consider making a backup.\n"
 printf "${cr}"
