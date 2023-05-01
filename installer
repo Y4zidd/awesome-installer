@@ -4,23 +4,7 @@
 cr="\033[1;31m"
 cg="\033[1;32m"
 cb="\033[1;34m"
-  
-  printf "installed git"
-  sudo pacman -S git
-  cd
-
-  printf "installed yay"
-	git clone https://aur.archlinux.org/yay.git
-	cd yay
-	makepkg -si --noconfirm
-	cd
-  
-  printf "installed sddm"
-  yay -Syy sddm
-  sudo rm -rf /etc/systemd/system/display-manager.service
-  sudo systemctl enable sddm
-  cd
-
+ 
 dependencias=(awesome bluez flameshot alacritty mpd mpDris2 nmcli picom playerctl pulsemixer redshift rofi xsettingsd zsh kitty chromium ncmpcpp neovim lf zathura)
 
 is_installed() {
@@ -32,7 +16,7 @@ printf "%s%sChecking for required packages...%s\n" "${BLD}" "${CBL}" "${CNC}"
 for paquete in "${dependencias[@]}"
 do
   if ! is_installed "$paquete"; then
-    yay -S "$paquete"
+    sudo xbps-install "$paquete"
     printf "\n"
   else
     printf '%s%s is already installed on your system!%s\n' "${CGR}" "$paquete" "${CNC}"
@@ -42,7 +26,7 @@ done
 
 printf "Cloning rice from https://github.com/Y4zidd/awesome-installer.git"
 cd
-git clone https://github.com/Manas140/dotfiles.git
+git clone --recurse-submodules https://github.com/Manas140/dotfiles.git --depth=1
 cd dotfiles
 
 printf "${cg}Proceeding further would replace all of the current configs, consider making a backup.\n"
